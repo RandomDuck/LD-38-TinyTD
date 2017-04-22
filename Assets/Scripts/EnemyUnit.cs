@@ -26,16 +26,15 @@ public class EnemyUnit : MonoBehaviour {
 			Debug.Log("TargetNode: " + TargetNode.name);
 			NextNodeIndex++;
 		} else {
-			LoseLife(healthRMvalue);
+			HurtPlayer();
 			Die();	
 		}
 	}
 	void Die(){
-		// TODO: Is this the only tihing that should happen here?
 		GameObject.Destroy(this.gameObject);
 	}
-	void LoseLife(int i ) {
-		// FIXME: add code here once we finished the ScoreMan.
+	void HurtPlayer() {
+		GameObject.FindObjectOfType<ScoreMan>().LoseLife(healthRMvalue);
 	}
 	// Update is called once per frame
 	void Update () {
@@ -67,8 +66,8 @@ public class EnemyUnit : MonoBehaviour {
 		public void TakeDamage(float damage) {
 		HitPoints -= damage;
 		if(HitPoints <= 0) {
+			GameObject.FindObjectOfType<ScoreMan>().GainMoney(value);
 			Die();
-			// TODO: add incremntion to money by value
 		}
 	}
 }
