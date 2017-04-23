@@ -15,7 +15,7 @@ bool display = false;
 		UpdateText();
 	}
 	void Update (){
-		if (GameObject.FindObjectOfType<Spawner>().getwavenum() == 10 && GameObject.FindObjectOfType<EnemyUnit>() == null && display == false) {
+		if (GameObject.FindObjectOfType<Spawner>().getwavenum() > 10 && GameObject.FindObjectOfType<EnemyUnit>() == null && display == false) {
 			display = true;
 			winpanel.SetActive(true);
 		}

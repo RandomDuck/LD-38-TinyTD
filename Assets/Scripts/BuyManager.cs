@@ -34,7 +34,7 @@ public class BuyManager : MonoBehaviour {
 	}
 	void updateText(int i) {
 		InfoText[0].text = "Turret: " + Prefabs[i].name;
-		InfoText[1].text = "Cost: " + cost.ToString();
+		InfoText[1].text = "Cost: " + cost.ToString() + "Q";
 		InfoText[2].text = "Damage: " + damage.ToString();
 		InfoText[3].text = "Range: " + range.ToString();
 		InfoText[4].text = "Fire Rate: " + fireRate.ToString();

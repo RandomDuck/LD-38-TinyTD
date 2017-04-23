@@ -42,7 +42,7 @@ public class EnemyUnit : MonoBehaviour {
 			newNodePlz();
 		}
 		Move();
-		// TODO: make code for when destroyed by tower. (public Murderme()?)
+		
 		
 
 	}
