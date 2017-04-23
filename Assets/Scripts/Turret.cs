@@ -9,7 +9,7 @@ public class Turret : MonoBehaviour {
 	Transform turretTransform;
 	public float FireRange = 4;
 	EnemyUnit nearestEnemy = null;
-	float fireCooldown = 0.5f;
+	public float fireCooldown = 0.5f;
 	float fireCooldownLeft = 0;
 	// Use this for initialization
 	void Start () {

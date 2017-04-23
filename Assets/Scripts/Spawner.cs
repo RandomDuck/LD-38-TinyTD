@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Spawner : MonoBehaviour {
-	float spawnCD = 0.85f;
+	public bool nextWave = false;
+	public Text ButtonText, wave;
+	public Button button;
+	public int WaveNum = 1;
+	float spawnCD = 0.5f;
 	float spawnCDremaining = 5;
 
 	[System.Serializable]
@@ -16,13 +20,23 @@ public class Spawner : MonoBehaviour {
 
 	public WaveComponent[] waveComps;
 
+	public int getwavenum() {return WaveNum;}
 	// Use this for initialization
-	void Start () {
-	
+	void Start() {
+		button.interactable = true;
+		ButtonText.text = "Next wave!";
+	}
+	void Update () {
+		
+		if (nextWave) {SpawnUpdate();}
+		wave.text = "Current wave: " + WaveNum;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void SpawnUpdate () {
+		button.interactable = false;
+		ButtonText.text = "Wave in progress";
+		
 		spawnCDremaining -= Time.deltaTime;
 		if(spawnCDremaining < 0) {
 			spawnCDremaining = spawnCD;
@@ -42,22 +56,17 @@ public class Spawner : MonoBehaviour {
 			}
 
 			if(didSpawn == false) {
-				// Wave must be complete!
-				// TODO: Instantiate next wave object!
+				WaveNum++;
+				foreach(WaveComponent wc in waveComps) {
+					wc.num += Mathf.CeilToInt( wc.num*0.5f);
+					wc.spawned = 0;
 
-				if(transform.parent.childCount > 1) {
-					transform.parent.GetChild(1).gameObject.SetActive(true);
 				}
-				else {
-					// That was the last wave -- what do we want to do?
-					// What if instead of DESTROYING wave objects,
-					// we just made them inactive, and then when we run
-					// out of waves, we restart at the first one,
-					// but double all enemy HPs or something?
-				}
-
-				Destroy(gameObject);
+				nextWave = false;
+				button.interactable = true;
+				ButtonText.text = "Next wave!";
 			}
 		}
 	}
+	public void ButtonEneable() {nextWave = true;}
 }

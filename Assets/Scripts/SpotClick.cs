@@ -15,7 +15,7 @@ void OnMouseUp() {
 				return;
 			}
 
-			sm.money -= bm.selectedTower.GetComponent<Turret>().cost;
+			sm.LoseMoney( bm.selectedTower.GetComponent<Turret>().cost );
 
 			
 			Instantiate(bm.selectedTower, transform.position + new Vector3 (0,0.3f,0), transform.rotation);
