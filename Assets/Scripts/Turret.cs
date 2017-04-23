@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Turret : MonoBehaviour {
+	public int cost = 100;
 	public GameObject bulletPrefab;
 	public float radius = 0f, damage = 1f;
 	Transform turretTransform;

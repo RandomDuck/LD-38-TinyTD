@@ -8,8 +8,7 @@ public Text LivesText, MoneyText;
 public int lives = 20, money = 500;
 	// Use this for initialization
 	void Start () {
-		LivesText.text = "Lives: " + lives.ToString();
-		MoneyText.text = "Quillings: " + money.ToString();
+		UpdateText();
 	}
 	
 	// Update is called once per frame
@@ -20,6 +19,9 @@ public int lives = 20, money = 500;
 	public void LoseLife (int i) {
 		lives -= i;
 		UpdateText();
+		if (lives <= 0) {
+			gameover();
+		}
 	}
 	public void GainMoney(int i) {
 		money += i;
@@ -29,5 +31,7 @@ public int lives = 20, money = 500;
 		money -= i;
 		UpdateText();
 	}
+	void gameover(){
 
+	}
 }
